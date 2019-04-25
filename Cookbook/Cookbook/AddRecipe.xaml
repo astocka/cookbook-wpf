@@ -1,0 +1,40 @@
+﻿<Page x:Class="Cookbook.AddRecipe"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cookbook"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Cookbook - Add Recipe">
+    <ScrollViewer>
+        <StackPanel CanVerticallyScroll="True">
+            <Label FontSize="24" Margin="30,10,0,10">Add Recipe</Label>
+
+            <StackPanel Margin="30,0,300,10">
+                <Label Content="_Name" Target="{Binding ElementName=txtRecipeName}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
+                <TextBox x:Name="txtRecipeName" MinHeight="50" />
+            </StackPanel>
+
+            <StackPanel Margin="30,0,300,10">
+                <Label Content="_Ingredients" Target="{Binding ElementName=txtRecipeIngredients}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
+                <TextBox x:Name="txtRecipeIngredients" AcceptsReturn="True" MinHeight="90" />
+            </StackPanel>
+
+            <StackPanel Margin="30,0,300,10">
+                <Label Content="_Preparation" Target="{Binding ElementName=txtRecipePreparation}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
+                <TextBox x:Name="txtRecipePreparation"   AcceptsReturn="True" MinHeight="90" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="30,0,10,15">
+                <Button x:Name="btnAddRecipe" Click="BtnAddRecipe_OnClick" Background="#FF17801C" BorderBrush="{x:Null}" Foreground="White" Width="100" Height="20" Margin="0,0,10,0">
+                    Add
+                </Button>
+
+                <Button x:Name="btnCancelAddRecipe" Click="BtnCancelAddRecipe_OnClick" Background="#FF802217" BorderBrush="{x:Null}" Foreground="White" Width="100" Height="20">
+                    Cancel
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

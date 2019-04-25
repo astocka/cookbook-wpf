@@ -1,0 +1,46 @@
+﻿<Window x:Class="Cookbook.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cookbook"
+        mc:Ignorable="d"
+        Title="Cookbook" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize" Icon="src/img/icons8_rice_bowl_32_B12_icon.ico">
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+            <ToolBar Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-literature-16.png"></Image>
+                        <TextBlock Margin="3,0,0,0">Recipes</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Separator></Separator>
+                <Button x:Name="btnAddRecipe" Click="BtnAddRecipe_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-plus-16.png"></Image>
+                        <TextBlock Margin="3,0,0,0">Add Recipe</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Separator></Separator>
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-star-filled-16.png"></Image>
+                        <TextBlock Margin="3,0,0,0">Favourites</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Separator></Separator>
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-google-web-search-16.png"></Image>
+                        <TextBlock Margin="3,0,0,0">Search</TextBlock>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" NavigationUIVisibility="Hidden" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+
+        </Frame>
+    </DockPanel>
+
+</Window>
