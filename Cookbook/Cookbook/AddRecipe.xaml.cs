@@ -30,31 +30,25 @@ namespace Cookbook
 
         private void BtnAddRecipe_OnClick(object sender, RoutedEventArgs e)
         {
-            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            var recipe = new Recipe
             {
-                conn.Open();
-                using (SQLiteCommand command = new SQLiteCommand(conn))
-                {
-                    command.CommandText =
-                        "INSERT INTO Recipes (Name, Ingredients, Preparation) VALUES (@Name, @Ingredients, @Preparation);";
-                    command.Prepare();
-                    command.Parameters.AddWithValue("@Name", txtRecipeName.Text);
-                    command.Parameters.AddWithValue("@Ingredients", txtRecipeIngredients.Text);
-                    command.Parameters.AddWithValue("@Preparation", txtRecipePreparation.Text);
-                    try
-                    {
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Recipe added successfully");
+                Name = txtRecipeName.Text,
+                Ingredients = txtRecipeIngredients.Text,
+                Preparation = txtRecipePreparation.Text
+            };
+            
+            try
+            {
+                DataAccess.AddRecipe(recipe);
+                MessageBox.Show("Recipe added successfully");
 
-                        var navService = NavigationService.GetNavigationService(this);
-                        var home = new Home();
-                        navService?.Navigate(home);
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show("Could not add the recipe...");
-                    }
-                }
+                var navService = NavigationService.GetNavigationService(this);
+                var home = new Home();
+                navService?.Navigate(home);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Could not add the recipe...");
             }
         }
 

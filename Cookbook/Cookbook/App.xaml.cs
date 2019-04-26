@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Cookbook.Data;
 
 namespace Cookbook
 {
@@ -13,5 +14,10 @@ namespace Cookbook
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            this.InitializeComponent();
+            DataAccess.InitializeDatabase();
+        }
     }
 }
