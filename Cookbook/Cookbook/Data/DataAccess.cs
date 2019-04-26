@@ -23,7 +23,8 @@ namespace Cookbook.Data
                                             "EXISTS Recipes (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
                                             "Name TEXT NOT NULL, " +
                                             "Ingredients TEXT NOT NULL," +
-                                            "Preparation TEXT NOT NULL)";
+                                            "Preparation TEXT NOT NULL," +
+                                            "IsFavourite INTEGER NOT NULL DEFAULT 0)";
                 SQLiteCommand createTableCommand = new SQLiteCommand(recipeTableQuery, conn);
                 createTableCommand.ExecuteReader();
             }
@@ -37,11 +38,12 @@ namespace Cookbook.Data
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
                     command.CommandText =
-                        "INSERT INTO Recipes (Name, Ingredients, Preparation) VALUES (@Name, @Ingredients, @Preparation);";
+                        "INSERT INTO Recipes (Name, Ingredients, Preparation, IsFavourite) VALUES (@Name, @Ingredients, @Preparation, @IsFavourite);";
                     command.Prepare();
                     command.Parameters.AddWithValue("@Name", recipe.Name);
                     command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
                     command.Parameters.AddWithValue("@Preparation", recipe.Preparation);
+                    command.Parameters.AddWithValue("@IsFavourite", recipe.IsFavourite);
 
                     command.ExecuteNonQuery();
                 }
@@ -62,7 +64,7 @@ namespace Cookbook.Data
 
                     while (query.Read())
                     {
-                        recipes.Add(new Recipe(query.GetInt32(0), query.GetString(1), query.GetString(2), query.GetString(3)));
+                        recipes.Add(new Recipe(query.GetInt32(0), query.GetString(1), query.GetString(2), query.GetString(3), query.GetBoolean(4)));
                     }
                 }
             }
@@ -89,6 +91,7 @@ namespace Cookbook.Data
                         recipe.Name = query.GetString(1);
                         recipe.Ingredients = query.GetString(2);
                         recipe.Preparation = query.GetString(3);
+                        recipe.IsFavourite = query.GetBoolean(4);
                     }
                 }
             }
@@ -116,6 +119,23 @@ namespace Cookbook.Data
                 }
             }
             return recipeId;
+        }
+
+        public static void AddToFavRecipe(Recipe recipe)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText =
+                        "UPDATE Recipes SET IsFavourite = 1 WHERE Id = @Id;";
+                    command.Prepare();
+                    command.Parameters.AddWithValue("@Id", recipe.Id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

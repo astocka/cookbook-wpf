@@ -34,6 +34,7 @@ namespace Cookbook
                 txtReadRecipeName.Text = recipe.Name;
                 txtReadRecipeIngredients.Text = recipe.Ingredients;
                 txtReadRecipePreparation.Text = recipe.Preparation;
+                txtReadRecipeId.Text = recipe.Id.ToString();
             }
             catch (Exception)
             {
@@ -43,7 +44,19 @@ namespace Cookbook
 
         private void BtnAddToFavRecipe_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Added to favourite");
+            try
+            {
+                var recipe = Data.DataAccess.GetRecipeById(Int32.Parse(txtReadRecipeId.Text));
+                if (!recipe.IsFavourite)
+                {
+                    Data.DataAccess.AddToFavRecipe(recipe);
+                    MessageBox.Show("Recipe added to favourite");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Add recipe to fav failed.");
+            }
         }
 
         private void BtnEditRecipe_OnClick(object sender, RoutedEventArgs e)
