@@ -30,5 +30,10 @@ namespace Cookbook
         {
             MainFrame.Content = new AddRecipe();
         }
+
+        private void BtnAllRecipes_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Recipes();
+        }
     }
 }

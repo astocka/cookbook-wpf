@@ -9,7 +9,7 @@
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
             <ToolBar Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-                <Button>
+                <Button x:Name="btnAllRecipes" Click="BtnAllRecipes_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="src/img/icons8-literature-16.png"></Image>
                         <TextBlock Margin="3,0,0,0">Recipes</TextBlock>

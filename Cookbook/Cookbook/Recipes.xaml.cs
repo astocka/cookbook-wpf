@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cookbook.Data;
 
 namespace Cookbook
 {
@@ -23,6 +24,36 @@ namespace Cookbook
         public Recipes()
         {
             InitializeComponent();
+            GetAllRecipes();
+        }
+
+        public void GetAllRecipes()
+        {
+            try
+            {
+                var allRecipes = DataAccess.GetRecipes();
+                var recipeList = new List<string>();
+
+                foreach (var recipe in allRecipes)
+                {
+                    recipeList.Add(recipe.Name);
+                }
+
+                lstAllRecipes.ItemsSource = recipeList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Could not show recipes...");
+
+                var navService = NavigationService.GetNavigationService(this);
+                var home = new Home();
+                navService?.Navigate(home);
+            }
+        }
+
+        private void txtSelectedRecipe_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show($"Selected: {lstAllRecipes.SelectedItem}");
         }
     }
 }

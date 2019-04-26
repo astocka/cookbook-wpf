@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,27 @@ namespace Cookbook.Data
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public static List<Recipe> GetRecipes()
+        {
+            List<Recipe> recipes = new List<Recipe>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM Recipes;";
+                    var query = command.ExecuteReader();
+
+                    while (query.Read())
+                    {
+                        recipes.Add(new Recipe(query.GetInt32(0), query.GetString(1), query.GetString(2), query.GetString(3)));
+                    }
+                }
+            }
+            return recipes;
         }
     }
 }

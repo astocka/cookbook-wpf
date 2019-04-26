@@ -12,5 +12,18 @@ namespace Cookbook.Data
         public string Name { get; set; }
         public string Ingredients { get; set; }
         public string Preparation { get; set; }
+
+        public Recipe(int id, string name, string ingredients, string preparation)
+        {
+            Id = id;
+            Name = name;
+            Ingredients = ingredients;
+            Preparation = preparation;
+        }
+
+        public Recipe()
+        {
+        }
+
     }
 }
