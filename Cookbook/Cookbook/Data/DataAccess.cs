@@ -68,5 +68,54 @@ namespace Cookbook.Data
             }
             return recipes;
         }
+
+        public static Recipe GetRecipeById(int id)
+        {
+            Recipe recipe = new Recipe();
+
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM Recipes WHERE Id = @Id;";
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    var query = command.ExecuteReader();
+
+                    while (query.Read())
+                    {
+                        recipe.Id = query.GetInt32(0);
+                        recipe.Name = query.GetString(1);
+                        recipe.Ingredients = query.GetString(2);
+                        recipe.Preparation = query.GetString(3);
+                    }
+                }
+            }
+            return recipe;
+        }
+
+        public static int GetRecipeIdByName(string name)
+        {
+            var recipeId = -1;
+
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT Id FROM Recipes WHERE Name = @Name;";
+                    command.Parameters.AddWithValue("@Name", name);
+
+                    var query = command.ExecuteReader();
+
+                    while (query.Read())
+                    {
+                        recipeId = query.GetInt32(0);
+                    }
+                }
+            }
+            return recipeId;
+        }
     }
 }

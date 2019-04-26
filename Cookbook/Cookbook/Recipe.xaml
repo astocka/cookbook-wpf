@@ -1,0 +1,48 @@
+﻿<Page x:Class="Cookbook.Recipe"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cookbook"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Cookbook - Recipe Details">
+
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+            <ToolBar Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                <Button x:Name="btnAddToFavRecipe" Click="BtnAddToFavRecipe_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-add-to-favorites-16.png"></Image>
+                        <TextBlock Margin="3,0,5,0">My Fav!</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnEditRecipe" Click="BtnEditRecipe_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-edit-file-16.png"></Image>
+                        <TextBlock Margin="3,0,5,0">Edit</TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnCancelRecipe" Click="BtnDeleteRecipe_OnClick">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="src/img/icons8-waste-filled-16.png"></Image>
+                        <TextBlock Margin="3,0,5,0">Delete</TextBlock>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+
+        <ScrollViewer DockPanel.Dock="Top">
+            <StackPanel CanVerticallyScroll="True" Orientation="Vertical">
+                <TextBlock x:Name="txtReadRecipeName" Margin="30,15,30,15" TextWrapping="Wrap"  MinHeight="50" FontSize="28" Foreground="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></TextBlock>
+
+                <Label Content="Ingredients" Margin="30,0,0,0" Target="{Binding ElementName=txtReadRecipeIngredients}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"></Label>
+                <TextBlock x:Name="txtReadRecipeIngredients"  FontSize="16" Margin="35,5,30,15" TextWrapping="Wrap" MinHeight="100"></TextBlock>
+
+                <Label Content="Preparation" Margin="30,0,0,0" Target="{Binding ElementName=txtReadRecipePreparation}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"></Label>
+                <TextBlock x:Name="txtReadRecipePreparation" FontSize="16" Margin="35,5,30,15" TextWrapping="Wrap" MinHeight="250"></TextBlock>
+            </StackPanel>
+          
+        </ScrollViewer>
+    </DockPanel>
+</Page>

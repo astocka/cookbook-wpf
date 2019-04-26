@@ -40,6 +40,7 @@ namespace Cookbook
                 }
 
                 lstAllRecipes.ItemsSource = recipeList;
+
             }
             catch (Exception)
             {
@@ -53,7 +54,11 @@ namespace Cookbook
 
         private void txtSelectedRecipe_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show($"Selected: {lstAllRecipes.SelectedItem}");
+            var recipeName = lstAllRecipes.SelectedItem;
+            var recipeId = DataAccess.GetRecipeIdByName(recipeName.ToString());
+            var navService = NavigationService.GetNavigationService(this);
+            var recipe = new Recipe((int)recipeId);
+            navService?.Navigate(recipe);
         }
     }
 }

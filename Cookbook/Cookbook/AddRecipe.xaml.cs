@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Cookbook.Data;
 
+
 namespace Cookbook
 {
     /// <summary>
@@ -30,7 +31,7 @@ namespace Cookbook
 
         private void BtnAddRecipe_OnClick(object sender, RoutedEventArgs e)
         {
-            var recipe = new Recipe
+            Data.Recipe recipe = new Data.Recipe
             {
                 Name = txtRecipeName.Text,
                 Ingredients = txtRecipeIngredients.Text,
