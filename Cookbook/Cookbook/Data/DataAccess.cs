@@ -137,5 +137,26 @@ namespace Cookbook.Data
                 }
             }
         }
+
+        public static void UpdateRecipe(Recipe recipe)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText =
+                        "UPDATE Recipes SET Name = @Name, Ingredients = @Ingredients, Preparation = @Preparation, IsFavourite = @IsFavourite WHERE Id = @Id;";
+                    command.Prepare();
+                    command.Parameters.AddWithValue("@Id", recipe.Id);
+                    command.Parameters.AddWithValue("@Name", recipe.Name);
+                    command.Parameters.AddWithValue("@Ingredients", recipe.Ingredients);
+                    command.Parameters.AddWithValue("@Preparation", recipe.Preparation);
+                    command.Parameters.AddWithValue("@IsFavourite", recipe.IsFavourite);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

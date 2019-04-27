@@ -35,7 +35,8 @@ namespace Cookbook
             {
                 Name = txtRecipeName.Text,
                 Ingredients = txtRecipeIngredients.Text,
-                Preparation = txtRecipePreparation.Text
+                Preparation = txtRecipePreparation.Text,
+                IsFavourite = txtRecipeIsFavourite.IsChecked.Value
             };
             
             try
@@ -44,8 +45,8 @@ namespace Cookbook
                 MessageBox.Show("Recipe added successfully");
 
                 var navService = NavigationService.GetNavigationService(this);
-                var home = new Home();
-                navService?.Navigate(home);
+                var recipes = new Recipes();
+                navService?.Navigate(recipes);
             }
             catch (Exception)
             {
@@ -56,8 +57,8 @@ namespace Cookbook
         private void BtnCancelAddRecipe_OnClick(object sender, RoutedEventArgs e)
         {
             var navService = NavigationService.GetNavigationService(this);
-            var home = new Home();
-            navService?.Navigate(home);
+            var recipes = new Recipes();
+            navService?.Navigate(recipes);
         }
     }
 }

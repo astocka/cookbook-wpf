@@ -26,6 +26,10 @@
                 <TextBox x:Name="txtRecipePreparation"   AcceptsReturn="True" MinHeight="90" />
             </StackPanel>
 
+            <StackPanel Margin="30,0,300,10">
+                <CheckBox x:Name="txtRecipeIsFavourite" Content="_Is Favourite" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left" IsChecked="False"></CheckBox>
+            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Margin="30,0,10,15">
                 <Button x:Name="btnAddRecipe" Click="BtnAddRecipe_OnClick" Background="#FF17801C" BorderBrush="{x:Null}" Foreground="White" Width="100" Height="20" Margin="0,0,10,0">
                     Add

@@ -56,6 +56,7 @@ namespace Cookbook
         {
             var recipeName = lstAllRecipes.SelectedItem;
             var recipeId = DataAccess.GetRecipeIdByName(recipeName.ToString());
+
             var navService = NavigationService.GetNavigationService(this);
             var recipe = new Recipe((int)recipeId);
             navService?.Navigate(recipe);
