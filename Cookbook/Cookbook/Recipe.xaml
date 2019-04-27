@@ -23,7 +23,7 @@
                         <TextBlock Margin="3,0,5,0">Edit</TextBlock>
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnCancelRecipe" Click="BtnDeleteRecipe_OnClick">
+                <Button x:Name="btnDeleteRecipe" Click="BtnDeleteRecipe_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="src/img/icons8-waste-filled-16.png"></Image>
                         <TextBlock Margin="3,0,5,0">Delete</TextBlock>

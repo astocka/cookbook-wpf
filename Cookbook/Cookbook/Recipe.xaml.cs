@@ -87,7 +87,25 @@ namespace Cookbook
 
         private void BtnDeleteRecipe_OnClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Are you sure you want to delete the recipe?");
+            if (MessageBox.Show("Are you sure you want to delete the recipe?", "", MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    var recipe = Data.DataAccess.GetRecipeById(Int32.Parse(txtReadRecipeId.Text));
+                    Data.DataAccess.DeleteRecipe(recipe);
+                    MessageBox.Show("The recipe deleted successfully.");
+
+                    var navService = NavigationService.GetNavigationService(this);
+                    var recipes = new Recipes();
+                    navService?.Navigate(recipes);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Delete the recipe failed.");
+                }
+               
+            }
         }
     }
 }

@@ -158,5 +158,20 @@ namespace Cookbook.Data
                 }
             }
         }
+
+        public static void DeleteRecipe(Recipe recipe)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "DELETE FROM Recipes WHERE Id = @Id;";
+                    command.Prepare();
+                    command.Parameters.AddWithValue("@Id", recipe.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
