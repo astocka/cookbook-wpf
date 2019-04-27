@@ -36,7 +36,10 @@ namespace Cookbook
 
                 foreach (var recipe in allFavRecipes)
                 {
-                    recipeList.Add(recipe.Name);
+                    if (recipe.IsFavourite)
+                    {
+                        recipeList.Add(recipe.Name);
+                    }
                 }
 
                 lstAllFavRecipes.ItemsSource = recipeList;

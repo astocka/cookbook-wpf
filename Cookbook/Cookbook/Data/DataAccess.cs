@@ -173,5 +173,29 @@ namespace Cookbook.Data
                 }
             }
         }
+
+        public static List<Recipe> SearchRecipe(string search)
+        {
+            List<Recipe> recipes = new List<Recipe>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(ConfigurationManager.ConnectionStrings["Default"].ConnectionString))
+            {
+                conn.Open();
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = "SELECT * FROM Recipes WHERE Name LIKE '%' || @Search || '%' OR Ingredients LIKE '%' || @Search || '%';";
+                    command.Parameters.AddWithValue("@Search", search);
+
+                    var query = command.ExecuteReader();
+
+                    while (query.Read())
+                    {
+                        recipes.Add(new Recipe(query.GetInt32(0), query.GetString(1), query.GetString(2), query.GetString(3), query.GetBoolean(4)));
+                    }
+                }
+            }
+
+            return recipes;
+        }
     }
 }

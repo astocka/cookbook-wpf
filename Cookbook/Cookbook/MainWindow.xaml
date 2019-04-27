@@ -30,12 +30,10 @@
                     </StackPanel>
                 </Button>
                 <Separator></Separator>
-                <Button>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="src/img/icons8-google-web-search-16.png"></Image>
-                        <TextBlock Margin="3,0,0,0">Search</TextBlock>
-                    </StackPanel>
-                </Button>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtSearchRecipe" GotMouseCapture="TxtSearchRecipe_OnGotMouseCapture" LostFocus="TxtSearchRecipe_OnLostFocus" KeyDown="TxtSearchRecipe_OnKeyDown" Margin="3,0,0,0" FontSize="12" MinWidth="200" MinHeight="12" VerticalAlignment="Center">Search...</TextBox>
+                    <Image Source="src/img/icons8-google-web-search-22.png"></Image>
+                </StackPanel>
             </ToolBar>
         </ToolBarTray>
         <Frame x:Name="MainFrame" DockPanel.Dock="Bottom" NavigationUIVisibility="Hidden" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">

@@ -9,7 +9,7 @@
       Title="Cookbook - Recipes">
     <ScrollViewer>
         <StackPanel CanVerticallyScroll="True">
-            <Label FontSize="24" Margin="30,10,0,10">Recipes</Label>
+            <Label x:Name="lblRecipes" FontSize="24" Margin="30,10,0,10">Recipes</Label>
 
             <ListView x:Name="lstAllRecipes" MinHeight="450" MinWidth="500" HorizontalAlignment="Left" Margin="30,15,30,30" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}">
                 <ListView.ItemTemplate>

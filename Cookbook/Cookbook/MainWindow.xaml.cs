@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cookbook.Data;
 
 namespace Cookbook
 {
@@ -39,6 +40,27 @@ namespace Cookbook
         private void BtnFavouriteRecipes_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new FavouriteRecipes();
+        }
+
+        private void TxtSearchRecipe_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                List<Data.Recipe> recipes = DataAccess.SearchRecipe(txtSearchRecipe.Text);
+                MainFrame.Content = new Recipes(recipes);
+                txtSearchRecipe.Text = "";
+            }
+        }
+
+        private void TxtSearchRecipe_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            txtSearchRecipe.Text = "Search...";
+        }
+
+
+        private void TxtSearchRecipe_OnGotMouseCapture(object sender, MouseEventArgs e)
+        {
+            txtSearchRecipe.Text = "";
         }
     }
 }

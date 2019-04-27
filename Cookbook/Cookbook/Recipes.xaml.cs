@@ -27,6 +27,12 @@ namespace Cookbook
             GetAllRecipes();
         }
 
+        public Recipes(List<Data.Recipe> recipes)
+        {
+            InitializeComponent();
+            GetSearchRecipes(recipes);
+        }
+
         public void GetAllRecipes()
         {
             try
@@ -41,6 +47,31 @@ namespace Cookbook
 
                 lstAllRecipes.ItemsSource = recipeList;
 
+                lblRecipes.Content = "Recipes";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Could not show recipes...");
+
+                var navService = NavigationService.GetNavigationService(this);
+                var home = new Home();
+                navService?.Navigate(home);
+            }
+        }
+
+        public void GetSearchRecipes(List<Data.Recipe> recipes)
+        {
+            try
+            {
+                var recipeList = new List<string>();
+
+                foreach (var recipe in recipes)
+                {
+                    recipeList.Add(recipe.Name);
+                }
+
+                lstAllRecipes.ItemsSource = recipeList;
+                lblRecipes.Content = "Search result";
             }
             catch (Exception)
             {
