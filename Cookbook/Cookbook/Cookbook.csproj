@@ -77,6 +77,9 @@
     <Compile Include="EditRecipe.xaml.cs">
       <DependentUpon>EditRecipe.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavouriteRecipes.xaml.cs">
+      <DependentUpon>FavouriteRecipes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Recipe.xaml.cs">
       <DependentUpon>Recipe.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavouriteRecipes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

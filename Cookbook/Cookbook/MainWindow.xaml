@@ -23,7 +23,7 @@
                     </StackPanel>
                 </Button>
                 <Separator></Separator>
-                <Button>
+                <Button x:Name="btnFavouriteRecipes" Click="BtnFavouriteRecipes_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="src/img/icons8-star-filled-16.png"></Image>
                         <TextBlock Margin="3,0,0,0">Favourites</TextBlock>

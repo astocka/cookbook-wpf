@@ -35,5 +35,10 @@ namespace Cookbook
         {
             MainFrame.Content = new Recipes();
         }
+
+        private void BtnFavouriteRecipes_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new FavouriteRecipes();
+        }
     }
 }
