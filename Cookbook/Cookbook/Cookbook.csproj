@@ -86,6 +86,9 @@
     <Compile Include="Recipes.xaml.cs">
       <DependentUpon>Recipes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RecipeToPrint.xaml.cs">
+      <DependentUpon>RecipeToPrint.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddRecipe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recipes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RecipeToPrint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,6 +195,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\img\icons8-google-web-search-22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="src\img\icons8-print-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />

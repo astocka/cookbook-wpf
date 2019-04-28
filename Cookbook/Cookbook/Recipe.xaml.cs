@@ -120,5 +120,21 @@ namespace Cookbook
                
             }
         }
+
+        private void BtnPrintRecipe_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var recipe = Data.DataAccess.GetRecipeById(Int32.Parse(txtReadRecipeId.Text));
+
+                var navService = NavigationService.GetNavigationService(this);
+                var print = new RecipeToPrint(recipe);
+                navService?.Navigate(print);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Print recipe failed.");
+            }
+        }
     }
 }

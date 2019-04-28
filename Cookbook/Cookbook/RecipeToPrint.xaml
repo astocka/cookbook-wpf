@@ -1,0 +1,46 @@
+﻿<Page x:Class="Cookbook.RecipeToPrint"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Cookbook"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Cookbook - Print Recipe">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <FlowDocumentReader Grid.Row="0">
+            <FlowDocument 
+                x:Name="recipeToPrint"
+                IsOptimalParagraphEnabled="true" 
+                IsHyphenationEnabled="true" 
+                IsColumnWidthFlexible="false" 
+                ColumnWidth="Auto" 
+                PagePadding="Auto" >
+                <Paragraph>
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=dd-MM-yyyy}" FontFamily="Segoe UI" FontSize="14"></TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock x:Name="printName" FontFamily="Segoe UI" FontSize="36"></TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock Text="Ingredients" FontFamily="Segoe UI" FontSize="22"></TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <ListView x:Name="printIngredients" FontFamily="Segoe UI" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}"></ListView>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock Text="Preparation" FontFamily="Segoe UI" FontSize="22"></TextBlock>
+                </Paragraph>
+                <Paragraph>
+                    <TextBlock x:Name="printPreparation" FontFamily="Segoe UI" FontSize="16"></TextBlock>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentReader>
+    </Grid>
+</Page>
