@@ -24,9 +24,18 @@ namespace Cookbook
     /// </summary>
     public partial class AddRecipe : Page
     {
+        List<string> ingredients = new List<string>();
+
         public AddRecipe()
         {
             InitializeComponent();
+        }
+
+        private string GetIngredients(List<string> input)
+        {
+            string delimiter = ";";
+            string result =  string.Join(delimiter, input);
+            return result;
         }
 
         private void BtnAddRecipe_OnClick(object sender, RoutedEventArgs e)
@@ -34,7 +43,7 @@ namespace Cookbook
             Data.Recipe recipe = new Data.Recipe
             {
                 Name = txtRecipeName.Text,
-                Ingredients = txtRecipeIngredients.Text,
+                Ingredients = GetIngredients(ingredients),
                 Preparation = txtRecipePreparation.Text,
                 IsFavourite = txtRecipeIsFavourite.IsChecked.Value
             };
@@ -59,6 +68,13 @@ namespace Cookbook
             var navService = NavigationService.GetNavigationService(this);
             var recipes = new Recipes();
             navService?.Navigate(recipes);
+        }
+
+        private void BtnAddIngredient_OnClick(object sender, RoutedEventArgs e)
+        {
+            ingredients.Add(txtRecipeIngredient.Text.Trim());
+            lstIngredientsToAdd.Items.Add(txtRecipeIngredient.Text);
+            txtRecipeIngredient.Text = "";
         }
     }
 }

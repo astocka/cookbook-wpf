@@ -20,11 +20,11 @@ namespace Cookbook.Data
             {
                 conn.Open();
                 String recipeTableQuery = "CREATE TABLE IF NOT " +
-                                            "EXISTS Recipes (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
-                                            "Name TEXT NOT NULL, " +
-                                            "Ingredients TEXT NOT NULL," +
-                                            "Preparation TEXT NOT NULL," +
-                                            "IsFavourite INTEGER NOT NULL DEFAULT 0)";
+                                          "EXISTS Recipes (Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, " +
+                                          "Name TEXT NOT NULL, " +
+                                          "Ingredients TEXT NOT NULL," +
+                                          "Preparation TEXT NOT NULL," +
+                                          "IsFavourite INTEGER NOT NULL DEFAULT 0);";
                 SQLiteCommand createTableCommand = new SQLiteCommand(recipeTableQuery, conn);
                 createTableCommand.ExecuteReader();
             }

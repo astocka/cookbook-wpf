@@ -18,7 +18,14 @@
 
             <StackPanel Margin="30,0,300,10">
                 <Label Content="_Ingredients" Target="{Binding ElementName=txtRecipeIngredients}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
-                <TextBox x:Name="txtRecipeIngredients" AcceptsReturn="True" MinHeight="90" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtRecipeIngredient" VerticalAlignment="Top" Height="20" Width="200" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                    <Button x:Name="btnAddIngredient" Click="BtnAddIngredient_OnClick" VerticalAlignment="Top" Background="#FF175A80" BorderBrush="{x:Null}" Foreground="White" Width="60" Height="20">
+                        Add Item
+                    </Button>
+                </StackPanel>
+                    <ListView x:Name="lstIngredientsToAdd" MinHeight="50" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,15,30,30" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}">
+                    </ListView>
             </StackPanel>
 
             <StackPanel Margin="30,0,300,10">

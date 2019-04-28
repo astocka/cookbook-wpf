@@ -9,7 +9,7 @@
       Title="Cookbook - Edit Recipe">
 
     <ScrollViewer>
-        <StackPanel CanVerticallyScroll="True">
+        <StackPanel CanVerticallyScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
             <Label FontSize="24" Margin="30,10,0,10">Edit Recipe</Label>
 
             <StackPanel>
@@ -22,8 +22,29 @@
             </StackPanel>
 
             <StackPanel Margin="30,0,300,10">
-                <Label Content="_Ingredients" Target="{Binding ElementName=txtEditRecipeIngredients}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
-                <TextBox x:Name="txtEditRecipeIngredients" AcceptsReturn="True" MinHeight="90" />
+                <Label Content="_Ingredients" Target="{Binding ElementName=txtRecipeIngredients}" FontFamily="Segoe UI" FontSize="18" HorizontalAlignment="Left"></Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="txtEditRecipeIngredient" VerticalAlignment="Top" Height="20" Width="200" HorizontalAlignment="Left" Margin="0,0,10,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="btnAddNewIngredient" Click="BtnAddNewIngredient_OnClick" VerticalAlignment="Top" Background="#FF175A80" BorderBrush="{x:Null}" Foreground="White" Width="70" Height="20">
+                            Add Item
+                        </Button>
+                        <Button x:Name="btnDeleteIngredient" Click="BtnDeleteIngredient_OnClick" VerticalAlignment="Top" Background="#FF802A17" BorderBrush="{x:Null}" Foreground="White" Width="80" Height="20" Margin="10,0,0,0">
+                            Delete Item
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel>
+                    <ListView x:Name="lstIngredientsToEdit" MinHeight="50" HorizontalAlignment="Left" VerticalContentAlignment="Top" Margin="0,15,30,30" FontSize="16" 
+                          Background="{x:Null}" BorderBrush="{x:Null}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                </StackPanel>
+
             </StackPanel>
 
             <StackPanel Margin="30,0,300,10">

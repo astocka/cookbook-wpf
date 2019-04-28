@@ -20,10 +20,23 @@ namespace Cookbook
     /// </summary>
     public partial class Recipe : Page
     {
+        List<string> ingredients = new List<string>();
+
         public Recipe(int id)
         {
             InitializeComponent();
             GetRecipe(id);
+        }
+
+        private List<string> GetListIngredients(string ingredientsToConvert)
+        {
+            List<string> listIngredients = new List<string>();
+            string[] changed = ingredientsToConvert.Split(';');
+            foreach (var ingredient in changed)
+            {
+                listIngredients.Add(ingredient);
+            }
+            return listIngredients;
         }
 
         private void GetRecipe(int id)
@@ -33,7 +46,7 @@ namespace Cookbook
                 var recipe = Data.DataAccess.GetRecipeById(id);
                 txtReadRecipeId.Text = recipe.Id.ToString();
                 txtReadRecipeName.Text = recipe.Name;
-                txtReadRecipeIngredients.Text = recipe.Ingredients;
+                lstReadRecipeIngredients.ItemsSource = GetListIngredients(recipe.Ingredients);
                 txtReadRecipePreparation.Text = recipe.Preparation;
 
                 if (recipe.IsFavourite)

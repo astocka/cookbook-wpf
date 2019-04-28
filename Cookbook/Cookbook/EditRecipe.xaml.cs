@@ -20,10 +20,32 @@ namespace Cookbook
     /// </summary>
     public partial class EditRecipe : Page
     {
+        List<string> editIngredients = new List<string>();
+        List<string> ingredientsToUpdate = new List<string>();
+
         public EditRecipe(Data.Recipe recipe)
         {
             InitializeComponent();
             GetRecipe(recipe);
+
+        }
+
+        private List<string> GetListIngredients(string ingredientsToConvert)
+        {
+            List<string> listIngredients = new List<string>();
+            string[] changed = ingredientsToConvert.Split(';');
+            foreach (var ingredient in changed)
+            {
+                listIngredients.Add(ingredient);
+            }
+            return listIngredients;
+        }
+
+        private string GetIngredientsToUpdate(List<string> input)
+        {
+            string delimiter = ";";
+            string result = string.Join(delimiter, input);
+            return result;
         }
 
         public void GetRecipe(Data.Recipe recipe)
@@ -32,9 +54,12 @@ namespace Cookbook
             {
                 txtEditRecipeId.Text = recipe.Id.ToString();
                 txtEditRecipeName.Text = recipe.Name;
-                txtEditRecipeIngredients.Text = recipe.Ingredients;
-                txtEditRecipePreparation.Text = recipe.Ingredients;
+                lstIngredientsToEdit.ItemsSource = GetListIngredients(recipe.Ingredients);
+                txtEditRecipePreparation.Text = recipe.Preparation;
                 txtEditRecipeIsFavourite.IsChecked = recipe.IsFavourite;
+
+                editIngredients = GetListIngredients(recipe.Ingredients);
+                ingredientsToUpdate = editIngredients;
             }
             catch (Exception)
             {
@@ -50,7 +75,7 @@ namespace Cookbook
                 {
                     Id = Int32.Parse(txtEditRecipeId.Text),
                     Name = txtEditRecipeName.Text,
-                    Ingredients = txtEditRecipeIngredients.Text,
+                    Ingredients = GetIngredientsToUpdate(ingredientsToUpdate),
                     Preparation = txtEditRecipePreparation.Text,
                     IsFavourite = txtEditRecipeIsFavourite.IsChecked.Value
                 };
@@ -73,6 +98,20 @@ namespace Cookbook
             var navService = NavigationService.GetNavigationService(this);
             var recipe = new Recipe(Int32.Parse(txtEditRecipeId.Text));
             navService?.Navigate(recipe);
+        }
+
+        private void BtnAddNewIngredient_OnClick(object sender, RoutedEventArgs e)
+        {
+            ingredientsToUpdate.Add(txtEditRecipeIngredient.Text.Trim());
+            lstIngredientsToEdit.ItemsSource = ingredientsToUpdate;
+            txtEditRecipeIngredient.Text = "";
+        }
+
+        private void BtnDeleteIngredient_OnClick(object sender, RoutedEventArgs e)
+        {
+            ingredientsToUpdate.Remove(lstIngredientsToEdit.SelectedItem.ToString());
+            lstIngredientsToEdit.ItemsSource = "";
+            lstIngredientsToEdit.ItemsSource = ingredientsToUpdate;
         }
     }
 }
