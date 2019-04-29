@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cookbook"
         mc:Ignorable="d"
-        Title="Cookbook" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize" Icon="src/img/icons8_rice_bowl_32_B12_icon.ico">
+        Title="Cookbook" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" ResizeMode="CanResize" Icon="src/img/icons8_rice_bowl_32_B12_icon.ico" WindowState="Maximized">
     <DockPanel>
         <ToolBarTray DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
             <ToolBar Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
@@ -15,14 +15,12 @@
                         <TextBlock Margin="3,0,0,0">Recipes</TextBlock>
                     </StackPanel>
                 </Button>
-                <Separator></Separator>
                 <Button x:Name="btnAddRecipe" Click="BtnAddRecipe_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="src/img/icons8-plus-16.png"></Image>
                         <TextBlock Margin="3,0,0,0">Add Recipe</TextBlock>
                     </StackPanel>
                 </Button>
-                <Separator></Separator>
                 <Button x:Name="btnFavouriteRecipes" Click="BtnFavouriteRecipes_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="src/img/icons8-star-filled-16.png"></Image>

@@ -34,7 +34,15 @@ namespace Cookbook
                 try
                 {
                     printName.Text = recipe.Name;
-                    printIngredients.ItemsSource = recipe.Ingredients.Split(';').ToList();
+                    List<string> recipes = recipe.Ingredients.Split(';').ToList();
+                    List<string> recipesToPrint = new List<string>();
+                    foreach (var item in recipes)
+                    {
+                        recipesToPrint.Add($"* {item}");
+                    }
+
+                    printIngredients.ItemsSource = recipesToPrint;
+
                     printPreparation.Text = recipe.Preparation;
 
                     printDialog.PrintDocument(((IDocumentPaginatorSource)recipeToPrint).DocumentPaginator, recipe.Name);

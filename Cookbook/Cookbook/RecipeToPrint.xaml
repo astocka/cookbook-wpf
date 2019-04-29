@@ -6,22 +6,24 @@
       xmlns:local="clr-namespace:Cookbook"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1122" d:DesignWidth="794"
       Title="Cookbook - Print Recipe">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <FlowDocumentReader Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="794"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <FlowDocumentReader>
             <FlowDocument 
                 x:Name="recipeToPrint"
+                PageWidth="Auto"
+                PageHeight="Auto"
+                IsColumnWidthFlexible="True"
+                ColumnWidth="794"
+                TextAlignment="Justify"
                 IsOptimalParagraphEnabled="true" 
-                IsHyphenationEnabled="true" 
-                IsColumnWidthFlexible="false" 
-                ColumnWidth="Auto" 
-                PagePadding="Auto" >
+                IsHyphenationEnabled="True" 
+                PagePadding="Auto">
                 <Paragraph>
                     <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=dd-MM-yyyy}" FontFamily="Segoe UI" FontSize="14"></TextBlock>
                 </Paragraph>
@@ -38,7 +40,7 @@
                     <TextBlock Text="Preparation" FontFamily="Segoe UI" FontSize="22"></TextBlock>
                 </Paragraph>
                 <Paragraph>
-                    <TextBlock x:Name="printPreparation" FontFamily="Segoe UI" FontSize="16"></TextBlock>
+                    <TextBlock x:Name="printPreparation" TextWrapping="Wrap" FontFamily="Segoe UI" FontSize="16"></TextBlock>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentReader>
